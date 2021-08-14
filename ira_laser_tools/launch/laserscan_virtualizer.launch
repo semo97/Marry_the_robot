@@ -1,0 +1,15 @@
+<!--
+FROM: http://wiki.ros.org/tf#static_transform_publisher
+
+<<static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms>>
+Publish a static coordinate transform to tf using an x/y/z offset and yaw/pitch/roll. The period, in milliseconds, specifies how often to send a transform. 100ms (10hz) is a good value.
+== OR ==
+<<static_transform_publisher x y z qx qy qz qw frame_id child_frame_id  period_in_ms>>
+Publish a static coordinate transform to tf using an x/y/z offset and quaternion. The period, in milliseconds, specifies how often to send a transform. 100ms (10hz) is a good value.
+
+-->
+
+<launch>
+
+
+</launch>
