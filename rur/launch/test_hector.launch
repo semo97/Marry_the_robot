@@ -1,0 +1,35 @@
+<launch>
+	<param name ="/use_sim_time" value="false"/>		
+<!--
+	<arg name="gui" default="True" />
+	<param name="use_gui" value="$(arg gui)"/>
+	<param name="robot_description" command="cat $(find rur_description)/urdf/cart.urdf" />
+        <include file="$(find rplidar_ros)/launch/rplidar2.launch" /> -->
+	
+	<!--<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> -->
+	 <!-- For This node is responsible for the links between the joints--> 
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />  
+        
+  <!-- Load robot model-->
+  <param name="robot_description"
+         command="$(find xacro)/xacro '$(find rur)/robot_data/test_hector.xarco'" /> 
+
+
+<!-- Run Lidar -->
+        <include file="$(find rplidar_ros)/launch/rplidar2.launch" />
+	<include file="$(find laser_filters)/examples/shadow_filter_example.launch" />
+	<include file="$(find laser_filters)/examples/rur_filter.launch" />
+	<include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch" />
+	<!-- <include file="$(find ira_laser_tools)/launch/laserscan_virtualizer.launch" /> --> 
+
+
+
+
+
+ <!-- Run the map server  
+      <node name="map_server" pkg="map_server" type="map_server" args="$(find map_server)/maps/mymap.yaml"/> -->
+
+
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rur)/rur.rviz"  /> <!-- For  Debugging REMOVE IT--> 
+  
+</launch>
